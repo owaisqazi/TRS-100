@@ -3,7 +3,7 @@
 import AuthModal from "@/components/auth/auth-modal";
 import { useState } from "react";
 
-export default function Page() {
+export default function Home() {
   const [open, setOpen] = useState(true);
 
   return (

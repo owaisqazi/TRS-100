@@ -67,7 +67,10 @@ function VerifyOtpForm({ onClose, sendOtpInfo }) {
                 dispatch(setToken(response?.user?.access_token));
                 dispatch(setUser(response?.user));
                 toast.success(response?.message);
-                router.push("/post-property");
+                console.log(response, 'user===>')
+                const token = response?.user?.access_token;
+                const user = encodeURIComponent(JSON.stringify(response?.user));
+                window.location.href = `https://personal-real-state-main.vercel.app/post-property?token=${token}&user=${user}`;
                 onClose();
             }
         } catch (err) {
