@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={roboto.className}>
-      <body>
+      <body suppressHydrationWarning={true}>
         <ReduxProvider>
           {children}
           <Toaster />
@@ -25,3 +25,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
