@@ -4,15 +4,17 @@
 import SliderBanner from "@/components/ui/slider-banner"
 import IPhoneBanner from "@/components/ui/i-phone-banner"
 import MyPropertyCard from "@/components/(property)/my-property/my-property-card"
+import PropertyLayout from "../PropertyLayout"
 
 export default function MyProperty() {
     return (
 
         <>
-            {/* <Header /> */}
+            <PropertyLayout>
             <SliderBanner  />
             <MyPropertyCard />
             <IPhoneBanner />
+            </PropertyLayout>
             {/* <WhatsapBanner /> */}
             {/* <Footer /> */}
         </>

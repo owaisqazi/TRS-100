@@ -1,17 +1,26 @@
-// import Header from "@/components/header"
-// import Footer from "@/components/footer"
-// import WhatsapBanner from "@/components/home/whatsap-banner"
+"use client";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import SubHeader from "@/app/(property)/post-property/sub-header/SubHeader";
 
-const Layout = ({ children }) => {
-    return (
-        <>
-            {/* <Header /> */}
-            {children}
-            {/* <WhatsapBanner /> */}
-            {/* <Footer /> */}
-        </>
-    )
+export default function PropertyLayout({ children }) {
+  const token = useSelector((state) => state.auth.token);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!token) {
+      router.replace("/");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
+  if (!token) return null;
+
+  return (
+    <>
+      <SubHeader />
+      {children}
+    </>
+  );
 }
-
-export default Layout
-
