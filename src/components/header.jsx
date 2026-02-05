@@ -39,12 +39,11 @@ function Header() {
             <header className="fixed top-0 left-0 z-50 w-full property-gradient bg-black/20 backdrop-blur-sm transition-all duration-300">
                 <div className="container mx-auto px-4 py-3 flex items-center justify-between">
                     <Link href="/" className="flex items-center md:ps-16">
-                        {/* Logo size thoda optimize kiya slider par acha dikhne ke liye */}
                         <Image src="/assets/logo/logo.png" alt="Logo" width={100} height={50} className="object-contain" />
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-16">
-                        {links.map(({ href, label }) => (
+                        {/* {links.map(({ href, label }) => (
                             <Link
                                 key={href}
                                 href={href}
@@ -55,7 +54,7 @@ function Header() {
                             >
                                 {label}
                             </Link>
-                        ))}
+                        ))} */}
                         {token ? (
                             <>
                                 <ProfileDrawer onLogout={handlerLogout} user={user} />

@@ -59,25 +59,33 @@ function VerifyOtpForm({ onClose, sendOtpInfo }) {
         setOtpValue(value);
     };
 
-    const handlerVerifyOtp = async () => {
-        if (!otpValue) return toast.error("please fill the otp input");
-        try {
-            const response = await verifyOtp({ otp: otpValue, phone: sendOtpInfo?.phone, role: sendOtpInfo?.role }).unwrap();
-            if (response?.status) {
-                dispatch(setToken(response?.user?.access_token));
-                dispatch(setUser(response?.user));
-                toast.success(response?.message);
-                console.log(response, 'user===>')
-                const token = response?.user?.access_token;
-                const user = encodeURIComponent(JSON.stringify(response?.user));
-                window.location.href = `https://personal-real-state-main.vercel.app/post-property?token=${token}&user=${user}`;
-                onClose();
-            }
-        } catch (err) {
-            console.log(err);
-            toast.error(err?.data?.message || 'Something went wrong');
-        }
+const handlerVerifyOtp = async () => {
+  if (!otpValue) return toast.error("please fill the otp input");
+
+  try {
+    const response = await verifyOtp({
+      otp: otpValue,
+      phone: sendOtpInfo?.phone,
+      role: sendOtpInfo?.role
+    }).unwrap();
+
+    if (response?.status) {
+      dispatch(setToken(response.user.access_token));
+      dispatch(setUser(response.user));
+
+      toast.success(response.message);
+
+      router.push("/post-property");
+
+      setTimeout(() => {
+        onClose();
+      }, 300);
     }
+  } catch (err) {
+    toast.error(err?.data?.message || "Something went wrong");
+  }
+};
+
 
     return (
         <>
